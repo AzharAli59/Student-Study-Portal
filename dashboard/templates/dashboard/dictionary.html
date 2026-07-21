@@ -1,0 +1,41 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+<section class="container text-center">
+  <h2>Dictionary</h2>
+  <p>Enter a word to see pronunciation, definition, examples, and synonyms.</p>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="form-card compact-form-card">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary btn-block" type="submit">Search Dictionary</button>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  {% if result %}
+    <div class="content-section mt-5 text-left">
+      <h2>{{ result.word }}</h2>
+      {% if result.phonetic %}<h6>{{ result.phonetic }}</h6>{% endif %}
+      {% if result.audio %}
+        <audio id="dictionary-audio" src="{{ result.audio }}"></audio>
+        <button class="btn btn-sm btn-outline-secondary" type="button"
+                onclick="document.getElementById('dictionary-audio').play()">
+          Play pronunciation
+        </button>
+      {% endif %}
+      <hr>
+      {% if result.definition %}<p><strong>Definition:</strong> {{ result.definition }}</p>{% endif %}
+      {% if result.example %}<p><strong>Example:</strong> {{ result.example }}</p>{% endif %}
+      {% if result.synonyms %}
+        <p><strong>Synonyms:</strong> {{ result.synonyms|join:", " }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+</section>
+
+{% endblock content %}

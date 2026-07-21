@@ -1,0 +1,30 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+<section class="container text-center">
+  <h2>Wikipedia Search</h2>
+  <p>Search Wikipedia for a quick article summary.</p>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="form-card compact-form-card">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary btn-block" type="submit">Search Wikipedia</button>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  {% if result %}
+    <div class="content-section mt-5 text-left">
+      <h2>{{ result.title }}</h2>
+      <a href="{{ result.link }}" target="_blank" rel="noopener">{{ result.link }}</a>
+      <hr>
+      <p>{{ result.summary }}</p>
+    </div>
+  {% endif %}
+</section>
+
+{% endblock content %}

@@ -1,0 +1,49 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+<section class="container text-center">
+  <h2>YouTube Search</h2>
+  <p>Search videos and open them on YouTube.</p>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="form-card compact-form-card">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary btn-block" type="submit">Search Videos</button>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  {% for video in results %}
+    <a href="{{ video.link|default:'#' }}" target="_blank" rel="noopener">
+      <div class="card mt-3 text-left">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-5">
+              {% if video.thumbnail %}
+                <img class="img-fluid" src="{{ video.thumbnail }}" alt="{{ video.title }}">
+              {% endif %}
+            </div>
+            <div class="col-md-7">
+              <h3>{{ video.title }}</h3>
+              {% if video.channel %}<h5>{{ video.channel }}</h5>{% endif %}
+              {% if video.description %}<p>{{ video.description }}</p>{% endif %}
+              {% if video.duration %}<p>Duration: {{ video.duration }}</p>{% endif %}
+              {% if video.views %}<p>Views: {{ video.views }}</p>{% endif %}
+              {% if video.published %}<p>Published: {{ video.published }}</p>{% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  {% empty %}
+    {% if request.method == "POST" %}
+      <p class="text-muted mt-4">No videos found.</p>
+    {% endif %}
+  {% endfor %}
+</section>
+
+{% endblock content %}

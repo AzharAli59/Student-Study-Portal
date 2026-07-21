@@ -1,0 +1,15 @@
+[project]
+name = "student-study-portal"
+version = "0.1.0"
+description = "A Django web app for student notes, homework, todos, and study resource search."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=5.2,<6.0",
+    "requests>=2.32.0",
+    "wikipedia>=1.4.0",
+    "youtube-search-python>=1.6.6",
+]
+
+[tool.uv]
+package = false

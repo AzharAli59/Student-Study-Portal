@@ -1,0 +1,14 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+<section class="container">
+  <div class="content-section">
+    <h2>{{ note.title }}</h2>
+    <p class="text-muted">Last updated {{ note.updated_at|date:"M d, Y H:i" }}</p>
+    <hr>
+    <p>{{ note.description|linebreaks }}</p>
+    <a href="{% url 'notes' %}" class="btn btn-outline-secondary">Back to Notes</a>
+  </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,51 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+<section class="container text-center">
+  <h2>Book Search</h2>
+  <p>Search Google Books for study references.</p>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="form-card compact-form-card">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary btn-block" type="submit">Search Books</button>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  {% for book in results %}
+    <a href="{{ book.preview|default:'#' }}" target="_blank" rel="noopener">
+      <div class="card mt-3 text-left">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-3">
+              {% if book.thumbnail %}
+                <img class="img-fluid" src="{{ book.thumbnail }}" alt="{{ book.title }}">
+              {% endif %}
+            </div>
+            <div class="col-md-9">
+              <h3>{{ book.title }}</h3>
+              {% if book.subtitle %}<h5>{{ book.subtitle }}</h5>{% endif %}
+              {% if book.description %}<p>{{ book.description|truncatechars:500 }}</p>{% endif %}
+              {% if book.categories %}
+                <p>Category: {{ book.categories|join:", " }}</p>
+              {% endif %}
+              {% if book.page_count %}<p>Pages: {{ book.page_count }}</p>{% endif %}
+              {% if book.rating %}<p>Rating: {{ book.rating }}</p>{% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  {% empty %}
+    {% if request.method == "POST" %}
+      <p class="text-muted mt-4">No books found.</p>
+    {% endif %}
+  {% endfor %}
+</section>
+
+{% endblock content %}

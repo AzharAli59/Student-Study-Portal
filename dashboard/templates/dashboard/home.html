@@ -1,0 +1,104 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="container text-center">
+  <h1 class="mb-3">Student Study Portal</h1>
+  <p class="lead mb-5">Organize notes, homework, todos, and study resources in one place.</p>
+
+  <div class="row">
+    <div class="col-md-3 mb-4">
+      <a href="{% url 'notes' %}">
+        <div class="card h-100">
+          <img class="card-img-top" src="{% static 'images/notes.jpg' %}" alt="Notes">
+          <div class="card-body">
+            <h5 class="card-title">Notes</h5>
+            <p>Create permanent notes for later reference.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3 mb-4">
+      <a href="{% url 'homework' %}">
+        <div class="card h-100">
+          <img class="card-img-top" src="{% static 'images/homework.jpg' %}" alt="Homework">
+          <div class="card-body">
+            <h5 class="card-title">Homework</h5>
+            <p>Track assignments, due dates, and completion status.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3 mb-4">
+      <a href="{% url 'youtube' %}">
+        <div class="card h-100">
+          <img class="card-img-top" src="{% static 'images/youtube.jpg' %}" alt="YouTube">
+          <div class="card-body">
+            <h5 class="card-title">YouTube</h5>
+            <p>Search educational videos quickly.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3 mb-4">
+      <a href="{% url 'todo' %}">
+        <div class="card h-100">
+          <img class="card-img-top" src="{% static 'images/todo.jpg' %}" alt="Todo">
+          <div class="card-body">
+            <h5 class="card-title">Todo</h5>
+            <p>Manage daily study tasks.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 mb-4">
+      <a href="{% url 'books' %}">
+        <div class="card h-100">
+          <img class="card-img-top" src="{% static 'images/books.jpg' %}" alt="Books">
+          <div class="card-body">
+            <h5 class="card-title">Books</h5>
+            <p>Find books through Google Books.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3 mb-4">
+      <a href="{% url 'dictionary' %}">
+        <div class="card h-100">
+          <img class="card-img-top" src="{% static 'images/dictionary.jpg' %}" alt="Dictionary">
+          <div class="card-body">
+            <h5 class="card-title">Dictionary</h5>
+            <p>Look up definitions, examples, and pronunciation.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3 mb-4">
+      <a href="{% url 'wiki' %}">
+        <div class="card h-100">
+          <img class="card-img-top" src="{% static 'images/wiki.jpg' %}" alt="Wikipedia">
+          <div class="card-body">
+            <h5 class="card-title">Wikipedia</h5>
+            <p>Search concise article summaries.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3 mb-4">
+      <a href="{% url 'conversion' %}">
+        <div class="card h-100">
+          <img class="card-img-top" src="{% static 'images/conversion.jpg' %}" alt="Conversion">
+          <div class="card-body">
+            <h5 class="card-title">Conversion</h5>
+            <p>Convert common length and mass units.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
